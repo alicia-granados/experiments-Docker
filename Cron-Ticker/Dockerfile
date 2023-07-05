@@ -11,7 +11,11 @@ COPY package.json ./
 RUN npm install
 
 # dest /app
-COPY app.js ./
+#COPY app.js ./
+COPY . . 
+
+#realizar testing
+RUN npm run test
 
 # comando run de la imagen 
 CMD ["node", "app.js"]
