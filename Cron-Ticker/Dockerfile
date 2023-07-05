@@ -5,10 +5,13 @@ FROM node:18.16.1-alpine3.18
 WORKDIR /app
 
 # dest /app
-COPY app.js package.json ./
+COPY package.json ./
 
 #instalar las dependenciass
 RUN npm install
+
+# dest /app
+COPY app.js ./
 
 # comando run de la imagen 
 CMD ["node", "app.js"]
