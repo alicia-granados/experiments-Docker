@@ -1,6 +1,7 @@
 #/app/usr/lib
 FROM --platform=$BUILDPLATFORM   node:18.16.1-alpine3.18
-
+#FROM  node:18.16.1-alpine3.18
+#FROM   --platform=lunux/amd64
 #CD APP
 WORKDIR /app
 
