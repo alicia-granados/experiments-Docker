@@ -1,28 +1,26 @@
-#/app/usr/lib
-FROM --platform=$BUILDPLATFORM   node:18.16.1-alpine3.18
-#FROM  node:18.16.1-alpine3.18
-#FROM   --platform=lunux/amd64
-#CD APP
+# dependencias de desarrollo
+FROM  node:18.16.1-alpine3.18 as deps
 WORKDIR /app
-
-# dest /app
 COPY package.json ./
-
-#instalar las dependenciass
 RUN npm install
 
-# dest /app
-#COPY app.js ./
+#build y test
+FROM  node:18.16.1-alpine3.18 as builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . . 
-
-#realizar testing
 RUN npm run test
 
-#eliminar archivos y directorios no necesarios en prod.
-RUN rm -rf test && rm -rf node_modules
-
-#unicamente las dependencias de produccion
+# dependencias de produccion
+FROM  node:18.16.1-alpine3.18 as prod-deps
+WORKDIR /app
+COPY package.json ./
 RUN npm install --prod
 
-# comando run de la imagen 
+# ejecutar la app
+FROM  node:18.16.1-alpine3.18 as runner
+WORKDIR /app
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY app.js ./
+COPY taks/ ./taks
 CMD ["node", "app.js"]
