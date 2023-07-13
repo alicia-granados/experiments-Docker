@@ -11,13 +11,13 @@ COPY . .
 # RUN yarn test
 RUN yarn build
 
-FROM node:19-alpine3.15 as prod-deps
-WORKDIR /app
-COPY package.json package.json
-RUN yarn install --prod --frozen-lockfile
-
 
 FROM nginx:1.23.3 as prod
 EXPOSE 80
+
 COPY --from=builder /app/dist /usr/share/nginx/html
-CMD [ "nginx","-g","daemon off;"]
+COPY assets/ /usr/share/nginx/html/assets
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
+
+CMD [ "nginx","-g", "daemon off;" ]
