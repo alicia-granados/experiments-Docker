@@ -27,3 +27,7 @@ Comandos  para desplegar PG-ADMIN al cluster
     kubectl logs pod/pg-admin-deployment-6d688cf9d7-zx9t4
 
 minikube service pg-admin-service
+
+Comandos  para desplegar BACKEND al cluster
+1. kubectl apply -f backend-secrets.yml
+2. kubectl apply -f backend.yml
