@@ -1,7 +1,13 @@
+minikube pause
+minikube unpause
+minikube stop
+minikube delete --all
+
 Comandos para desplegar la base de datos  en el cluster
 
 1. kubectl version
 2. kubectl get all
+   kubectl get pod
 3. kubectl apply -f postgres-config.yml
 4. kubectl apply -f postgres-secrets.yml
 5. kubectl apply -f postgres.yml
