@@ -1,6 +1,7 @@
 minikube pause
 minikube unpause
 minikube stop
+Limpieza:
 minikube delete --all
 
 Comandos para desplegar la base de datos  en el cluster
@@ -31,3 +32,5 @@ minikube service pg-admin-service
 Comandos  para desplegar BACKEND al cluster
 1. kubectl apply -f backend-secrets.yml
 2. kubectl apply -f backend.yml
+
+minikube service backend-service
