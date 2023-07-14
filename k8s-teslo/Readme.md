@@ -18,3 +18,12 @@ Comandos para desplegar la base de datos  en el cluster
 8. Ver los logs del pod
     kubectl logs pod/postgres-deployment-b85dc5449-fvr58
 
+Comandos  para desplegar PG-ADMIN al cluster
+1. kubectl apply -f pg-admin-secrets.yml
+2. kubectl apply -f pg-admin.yml
+3. kubectl get all
+4. kubectl describe deployment.apps/pg-admin-deployment
+5. Ver los logs del pod
+    kubectl logs pod/pg-admin-deployment-6d688cf9d7-zx9t4
+
+minikube service pg-admin-service

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: pg-admin
-        image: dpage/pgadmin4:6:17
+        image: dpage/pgadmin4:6.17
         ports:
         - containerPort: 80
         env:
@@ -39,6 +39,7 @@ metadata:
   name: pg-admin-service
 spec:
   type: NodePort
+
   selector:
     app: pg-admin
   ports:
