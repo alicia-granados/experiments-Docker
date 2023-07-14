@@ -5,7 +5,6 @@ metadata:
   labels:
     app: postgres
 spec:
-  #copias 
   replicas: 1
   selector:
     matchLabels:
